@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="objectives #   unlink wordpress with NGINX 端口 upload static Hugo site configurate nginx 让 hugo site &amp; other service占用不同端口  wordpress #  log in to server
+su - author to change to the author user. Author user is for wordpress and in sudo group. Installed according to the tutorial. Database error when docker-compose. Put down first.
+Upload static Hugo site #  hugo site generated. Then try to push to vps.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="objectives #   unlink wordpress with NGINX 端口 upload static Hugo site configurate nginx 让 hugo site &amp; other service占用不同端口  wordpress #  log in to server
+su - author to change to the author user. Author user is for wordpress and in sudo group. Installed according to the tutorial. Database error when docker-compose. Put down first.
+Upload static Hugo site #  hugo site generated. Then try to push to vps." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/docs/nginx-config-10-08/" />
+
+<title>Nginx Config 10 08 | My Documentations</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.e62c87c0a5f78618c1d9654bac000b57fdba292e359cd3ae3a97d4774328868d.css" integrity="sha256-5iyHwKX3hhjB2WVLrAALV/26KS41nNOuOpfUd0Moho0=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.b5eee4c0334087dfe4572dfc5be320edfbf6641cdb3af25b289ba684cac44057.js" integrity="sha256-te7kwDNAh9/kVy38W&#43;Mg7fv2ZBzbOvJbKJumhMrEQFc=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>My Documentations</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="http://example.org/docs/nginx-config-10-08/" class=" active">Nginx Config 10 08</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Nginx Config 10 08</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents"></nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="objectives">
+  objectives
+  <a class="anchor" href="#objectives">#</a>
+</h1>
+<ul>
+<li>unlink wordpress with NGINX 端口</li>
+<li>upload static Hugo site</li>
+<li>configurate nginx 让 hugo site &amp; other service占用不同端口</li>
+</ul>
+<h1 id="wordpress">
+  wordpress
+  <a class="anchor" href="#wordpress">#</a>
+</h1>
+<p>log in to server</p>
+<p><code>su - author</code> to change to the author user. Author user is for wordpress and in sudo group. Installed according to the <a href="https://www.digitalocean.com/community/tutorials/how-to-install-wordpress-with-docker-compose">tutorial</a>. Database error when docker-compose. Put down first.</p>
+<h1 id="upload-static-hugo-site">
+  Upload static Hugo site
+  <a class="anchor" href="#upload-static-hugo-site">#</a>
+</h1>
+<p>hugo site generated. Then try to push to vps.</p>
+<p>Add a new user for static site <code> adduser hugo</code></p>
+<pre><code class="language-adduser" data-lang="adduser">new password: ?qeT5rU5
+</code></pre><p>add a subdomain name from DNS.</p>
+<p><code> notes.midofnowher.link</code> for documentation. <code> blog.midofnowhere.link</code> for blog. Both are hugo generated static sites. IP directed to the same VPS. <a href="https://jtreminio.com/blog/setting-up-a-static-site-with-hugo-and-push-to-deploy/">参考教程</a>.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function select(element){const selection=window.getSelection();const range=document.createRange();range.selectNodeContents(element);selection.removeAllRanges();selection.addRange(range);}
+document.querySelectorAll("pre code").forEach(code=>{code.addEventListener("click",function(event){select(code.parentElement);if(navigator.clipboard){navigator.clipboard.writeText(code.parentElement.textContent);}});});})();</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents"></nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
