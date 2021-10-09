@@ -3,23 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/docs/nginx-config-10-08/</loc>
+    <loc>https://yue2.github.io/notes/docs/nginx-config-10-08/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/categories/</loc>
+    <loc>https://yue2.github.io/notes/docs/publish-hugo-on-github/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/docs/</loc>
+    <loc>https://yue2.github.io/notes/categories/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/</loc>
+    <loc>https://yue2.github.io/notes/docs/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://yue2.github.io/notes/</loc>
+  </url>
+  
+  <url>
+    <loc>https://yue2.github.io/notes/tags/</loc>
   </url>
   
 </urlset>

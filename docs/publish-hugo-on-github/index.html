@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Publish Hugo on Github #  objectives #   generate hugo site locally push generated site - in /public to github use github page to view the site   use git to push to my VPS host on my domain  work #  generate site locally #  To generate the site in hugo, cd in the site root, run hugo, the site will be generated in /public 目录。">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
+<meta property="og:description" content="Publish Hugo on Github #  objectives #   generate hugo site locally push generated site - in /public to github use github page to view the site   use git to push to my VPS host on my domain  work #  generate site locally #  To generate the site in hugo, cd in the site root, run hugo, the site will be generated in /public 目录。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yue2.github.io/notes/docs/publish-hugo-on-github/" />
+
+<title>Publish Hugo on Github | My Documentations</title>
+<link rel="manifest" href="/notes/manifest.json">
+<link rel="icon" href="/notes/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/notes/book.min.e62c87c0a5f78618c1d9654bac000b57fdba292e359cd3ae3a97d4774328868d.css" integrity="sha256-5iyHwKX3hhjB2WVLrAALV/26KS41nNOuOpfUd0Moho0=" crossorigin="anonymous">
+  <script defer src="/notes/flexsearch.min.js"></script>
+  <script defer src="/notes/en.search.min.1aa8809e9e5055b7791484e5a3fdb4f82446f5f2fe6afa35fe2fa5a0f88c0855.js" integrity="sha256-GqiAnp5QVbd5FITlo/20&#43;CRG9fL&#43;avo1/i&#43;loPiMCFU=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/notes/"><span>My Documentations</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://yue2.github.io/notes/docs/nginx-config-10-08/" class="">Nginx Config 10 08</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://yue2.github.io/notes/docs/publish-hugo-on-github/" class=" active">Publish Hugo on Github</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var menu=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(event){localStorage.setItem("menu.scrollTop",menu.scrollTop);});menu.scrollTop=localStorage.getItem("menu.scrollTop");})();</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/notes/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Publish Hugo on Github</strong>
+
+  <label for="toc-control">
+    
+    <img src="/notes/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#objectives">objectives</a></li>
+    <li><a href="#work">work</a>
+      <ul>
+        <li><a href="#generate-site-locally">generate site locally</a></li>
+        <li><a href="#push-to-github">push to github</a></li>
+        <li><a href="#view-on-github-pages">view on github pages</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h1 id="publish-hugo-on-github">
+  Publish Hugo on Github
+  <a class="anchor" href="#publish-hugo-on-github">#</a>
+</h1>
+<h2 id="objectives">
+  objectives
+  <a class="anchor" href="#objectives">#</a>
+</h2>
+<ol>
+<li>generate hugo site locally</li>
+<li>push generated site - in /public to github</li>
+<li>use github page to view the site</li>
+</ol>
+<ul>
+<li>use git to push to my VPS</li>
+<li>host on my domain</li>
+</ul>
+<h2 id="work">
+  work
+  <a class="anchor" href="#work">#</a>
+</h2>
+<h3 id="generate-site-locally">
+  generate site locally
+  <a class="anchor" href="#generate-site-locally">#</a>
+</h3>
+<p>To generate the site in hugo, cd in the site root, run <code>hugo</code>, the site will be generated in /public 目录。</p>
+<p>problems:</p>
+<ol>
+<li>don&rsquo;t work if the site folder is in an external disk.
+<ul>
+<li>move to a local disk solved the problem.</li>
+</ul>
+</li>
+<li>themes don&rsquo;t render
+<ul>
+<li><a href="https://stackoverflow.com/questions/55230727/hugo-not-rendering-the-public-folder-locally">stackoverflow qs</a> looks like problem with the base url</li>
+<li>changed to github page url and run <code>hugo</code> again. solved the problem.</li>
+</ul>
+</li>
+</ol>
+<h3 id="push-to-github">
+  push to github
+  <a class="anchor" href="#push-to-github">#</a>
+</h3>
+<p>in the site public folder, run</p>
+<pre><code class="language-ssh" data-lang="ssh">init git
+git add .
+git remote add origin https://github.com/username/repository.git
+git commit -m &quot;commit message&quot;
+git push origin main
+## other commands
+git remote -v ## to check remote
+git remote set-url origin https://github.com/username/anotherrepository.git ## to change remote git
+</code></pre><h3 id="view-on-github-pages">
+  view on github pages
+  <a class="anchor" href="#view-on-github-pages">#</a>
+</h3>
+<p>In github repo settings, check pages. Set main branch as the page source.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function select(element){const selection=window.getSelection();const range=document.createRange();range.selectNodeContents(element);selection.removeAllRanges();selection.addRange(range);}
+document.querySelectorAll("pre code").forEach(code=>{code.addEventListener("click",function(event){select(code.parentElement);if(navigator.clipboard){navigator.clipboard.writeText(code.parentElement.textContent);}});});})();</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#objectives">objectives</a></li>
+    <li><a href="#work">work</a>
+      <ul>
+        <li><a href="#generate-site-locally">generate site locally</a></li>
+        <li><a href="#push-to-github">push to github</a></li>
+        <li><a href="#view-on-github-pages">view on github pages</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

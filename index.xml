@@ -2,19 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>My Documentations</title>
-    <link>http://example.org/</link>
+    <link>https://yue2.github.io/notes/</link>
     <description>Recent content on My Documentations</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://yue2.github.io/notes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>http://example.org/docs/nginx-config-10-08/</link>
+      <link>https://yue2.github.io/notes/docs/nginx-config-10-08/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/nginx-config-10-08/</guid>
+      <guid>https://yue2.github.io/notes/docs/nginx-config-10-08/</guid>
       <description>objectives #   unlink wordpress with NGINX 端口 upload static Hugo site configurate nginx 让 hugo site &amp;amp; other service占用不同端口  wordpress #  log in to server
 su - author to change to the author user. Author user is for wordpress and in sudo group. Installed according to the tutorial. Database error when docker-compose. Put down first.
 Upload static Hugo site #  hugo site generated. Then try to push to vps.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://yue2.github.io/notes/docs/publish-hugo-on-github/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yue2.github.io/notes/docs/publish-hugo-on-github/</guid>
+      <description>Publish Hugo on Github #  objectives #   generate hugo site locally push generated site - in /public to github use github page to view the site   use git to push to my VPS host on my domain  work #  generate site locally #  To generate the site in hugo, cd in the site root, run hugo, the site will be generated in /public 目录。</description>
     </item>
     
   </channel>
