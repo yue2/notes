@@ -23,7 +23,16 @@ Upload static Hugo site #  hugo site generated. Then try to push to vps.</descri
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yue2.github.io/notes/docs/publish-hugo-on-github/</guid>
-      <description>Publish Hugo on Github #  objectives #   generate hugo site locally push generated site - in /public to github use github page to view the site   use git to push to my VPS host on my domain  work #  generate site locally #  To generate the site in hugo, cd in the site root, run hugo, the site will be generated in /public 目录。</description>
+      <description>Publish Hugo on Github #  objectives #   generate hugo site locally push generated site - in /public to github use github page to view the site   set github action to automatically push use git to push to my VPS host on my domain  work #  generate site locally #  To generate the site in hugo, cd in the site root, run hugo, the site will be generated in /public 目录。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://yue2.github.io/notes/docs/publish-hugo-on-nginx/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://yue2.github.io/notes/docs/publish-hugo-on-nginx/</guid>
+      <description>Publish Static Hugo Site on VPS with NGINX #  objectives #   install git on VPS push local site to VPS using git configurate NGINX to host site   publish another site using 另一个端口，configurate NGINX certbot?  </description>
     </item>
     
   </channel>
