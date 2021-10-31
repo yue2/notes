@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Publish Static Hugo Site on VPS with NGINX #  objectives #   install git on VPS push local site to VPS using git configurate NGINX to host site   publish another site using 另一个端口，configurate NGINX certbot?  ">
+<meta name="description" content="Push local files to NGINX using GIT #  objectives #   install git in virtual machine connect local git to NGINX push local static site to NGINX configure NGINX to host the site  1. #  Under user hugo, create directives for the storing of files
+ mkdir var/www/
+install git apt-get install git and add new user to check git push and commit  adduser gitter password same as hugo user.">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="" />
-<meta property="og:description" content="Publish Static Hugo Site on VPS with NGINX #  objectives #   install git on VPS push local site to VPS using git configurate NGINX to host site   publish another site using 另一个端口，configurate NGINX certbot?  " />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Git_nginx" />
+<meta property="og:description" content="Push local files to NGINX using GIT #  objectives #   install git in virtual machine connect local git to NGINX push local static site to NGINX configure NGINX to host the site  1. #  Under user hugo, create directives for the storing of files
+ mkdir var/www/
+install git apt-get install git and add new user to check git push and commit  adduser gitter password same as hugo user." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yue2.github.io/notes/docs/publish-hugo-on-nginx/" />
-
-<title>Publish Hugo on Nginx | My Documentations</title>
+<meta property="og:url" content="https://yue2.github.io/notes/docs/git_nginx/" />
+<meta property="article:published_time" content="2021-10-31T15:41:00+08:00" />
+<meta property="article:modified_time" content="2021-10-31T15:41:00+08:00" />
+<title>Git_nginx | My Documentations</title>
 <link rel="manifest" href="/notes/manifest.json">
 <link rel="icon" href="/notes/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/notes/book.min.e62c87c0a5f78618c1d9654bac000b57fdba292e359cd3ae3a97d4774328868d.css" integrity="sha256-5iyHwKX3hhjB2WVLrAALV/26KS41nNOuOpfUd0Moho0=" crossorigin="anonymous">
@@ -67,7 +72,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://yue2.github.io/notes/docs/git_nginx/" class="">Git_nginx</a>
+    <a href="https://yue2.github.io/notes/docs/git_nginx/" class=" active">Git_nginx</a>
   
 
         </li>
@@ -106,7 +111,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://yue2.github.io/notes/docs/publish-hugo-on-nginx/" class=" active">Publish Hugo on Nginx</a>
+    <a href="https://yue2.github.io/notes/docs/publish-hugo-on-nginx/" class="">Publish Hugo on Nginx</a>
   
 
         </li>
@@ -148,7 +153,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/notes/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Publish Hugo on Nginx</strong>
+  <strong>Git_nginx</strong>
 
   <label for="toc-control">
     
@@ -165,6 +170,7 @@ https://github.com/alex-shpak/hugo-book
 <nav id="TableOfContents">
   <ul>
     <li><a href="#objectives">objectives</a></li>
+    <li><a href="#1">1.</a></li>
   </ul>
 </nav>
 
@@ -177,24 +183,39 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h1 id="publish-static-hugo-site-on-vps-with-nginx">
-  Publish Static Hugo Site on VPS with NGINX
-  <a class="anchor" href="#publish-static-hugo-site-on-vps-with-nginx">#</a>
+  <article class="markdown"><h1 id="push-local-files-to-nginx-using-git">
+  Push local files to NGINX using GIT
+  <a class="anchor" href="#push-local-files-to-nginx-using-git">#</a>
 </h1>
 <h2 id="objectives">
   objectives
   <a class="anchor" href="#objectives">#</a>
 </h2>
 <ol>
-<li>install git on VPS</li>
-<li>push local site to VPS using git</li>
-<li>configurate NGINX to host site</li>
+<li>install git in virtual machine</li>
+<li>connect local git to NGINX</li>
+<li>push local static site to NGINX</li>
+<li>configure NGINX to host the site</li>
 </ol>
-<ul>
-<li>publish another site using 另一个端口，configurate NGINX</li>
-<li>certbot?</li>
-</ul>
-</article>
+<h2 id="1">
+  1.
+  <a class="anchor" href="#1">#</a>
+</h2>
+<p>Under user hugo, create directives for the storing of files</p>
+<p><code> mkdir var/www/</code></p>
+<p>install git <code>apt-get install git</code> and add new user to check git push and commit <code> adduser gitter</code> password same as hugo user.</p>
+<p>initiate a git on the system</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#66d9ef">mkdir</span> <span style="color:#e6db74">site.git</span> <span style="color:#e6db74">&amp;&amp;</span> <span style="color:#e6db74">cd</span> <span style="color:#e6db74">site.git</span>
+<span style="color:#e6db74">git</span> <span style="color:#e6db74">--bare</span> <span style="color:#e6db74">init</span>
+<span style="color:#e6db74">git</span> <span style="color:#e6db74">update-server-info</span>
+<span style="color:#e6db74">chown</span> <span style="color:#e6db74">-R</span> <span style="color:#e6db74">www-data.www-data</span> <span style="color:#e6db74">.</span> 
+<span style="color:#e6db74">chmod</span> <span style="color:#e6db74">-R</span> <span style="color:#ae81ff">755</span> <span style="color:#e6db74">.</span> 
+</code></pre></div><p>allow firewall</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#66d9ef">ufw</span> <span style="color:#e6db74">enable</span>
+<span style="color:#e6db74">ufw</span> <span style="color:#e6db74">allow</span> <span style="color:#e6db74">ssh</span>
+<span style="color:#e6db74">ufw</span> <span style="color:#e6db74">allow</span> <span style="color:#e6db74">http</span>
+<span style="color:#e6db74">ufw</span> <span style="color:#e6db74">status</span>
+</code></pre></div></article>
  
       
 
@@ -237,6 +258,7 @@ document.querySelectorAll("pre code").forEach(code=>{code.addEventListener("clic
 <nav id="TableOfContents">
   <ul>
     <li><a href="#objectives">objectives</a></li>
+    <li><a href="#1">1.</a></li>
   </ul>
 </nav>
 
