@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Push local files to NGINX using GIT #  objectives #   install git in virtual machine connect local git to NGINX push local static site to NGINX configure NGINX to host the site  1. #  Under user hugo, create directives for the storing of files
+<meta name="description" content="Push local files to NGINX using GIT #  objectives #   install git in virtual machine connect local git to VPS push local static site to VPS configure NGINX to host the site  1. #  Following this tutorial, under user hugo, create directives for the storing of files
  mkdir var/www/
 install git apt-get install git and add new user to check git push and commit  adduser gitter password same as hugo user.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Git_nginx" />
-<meta property="og:description" content="Push local files to NGINX using GIT #  objectives #   install git in virtual machine connect local git to NGINX push local static site to NGINX configure NGINX to host the site  1. #  Under user hugo, create directives for the storing of files
+<meta property="og:description" content="Push local files to NGINX using GIT #  objectives #   install git in virtual machine connect local git to VPS push local static site to VPS configure NGINX to host the site  1. #  Following this tutorial, under user hugo, create directives for the storing of files
  mkdir var/www/
 install git apt-get install git and add new user to check git push and commit  adduser gitter password same as hugo user." />
 <meta property="og:type" content="article" />
@@ -20,7 +20,7 @@ install git apt-get install git and add new user to check git push and commit  a
 <link rel="icon" href="/notes/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/notes/book.min.e62c87c0a5f78618c1d9654bac000b57fdba292e359cd3ae3a97d4774328868d.css" integrity="sha256-5iyHwKX3hhjB2WVLrAALV/26KS41nNOuOpfUd0Moho0=" crossorigin="anonymous">
   <script defer src="/notes/flexsearch.min.js"></script>
-  <script defer src="/notes/en.search.min.dcc8b9126a762039b596b68c439f989710f561a1d0a705106985db2921b4193a.js" integrity="sha256-3Mi5Emp2IDm1lraMQ5&#43;YlxD1YaHQpwUQaYXbKSG0GTo=" crossorigin="anonymous"></script>
+  <script defer src="/notes/en.search.min.7573297f4d75bbf3787c65235c43c807e976a2e58a769d1634c4fad357eb970d.js" integrity="sha256-dXMpf011u/N4fGUjXEPIB&#43;l2ouWKdp0WNMT601frlw0=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -171,6 +171,7 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#objectives">objectives</a></li>
     <li><a href="#1">1.</a></li>
+    <li><a href="#2">2.</a></li>
   </ul>
 </nav>
 
@@ -193,15 +194,15 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <ol>
 <li>install git in virtual machine</li>
-<li>connect local git to NGINX</li>
-<li>push local static site to NGINX</li>
+<li>connect local git to VPS</li>
+<li>push local static site to VPS</li>
 <li>configure NGINX to host the site</li>
 </ol>
 <h2 id="1">
   1.
   <a class="anchor" href="#1">#</a>
 </h2>
-<p>Under user hugo, create directives for the storing of files</p>
+<p>Following this <a href="https://www.howtoforge.com/tutorial/ubuntu-git-server-installation/">tutorial</a>, under user hugo, create directives for the storing of files</p>
 <p><code> mkdir var/www/</code></p>
 <p>install git <code>apt-get install git</code> and add new user to check git push and commit <code> adduser gitter</code> password same as hugo user.</p>
 <p>initiate a git on the system</p>
@@ -215,7 +216,18 @@ https://github.com/alex-shpak/hugo-book
 <span style="color:#e6db74">ufw</span> <span style="color:#e6db74">allow</span> <span style="color:#e6db74">ssh</span>
 <span style="color:#e6db74">ufw</span> <span style="color:#e6db74">allow</span> <span style="color:#e6db74">http</span>
 <span style="color:#e6db74">ufw</span> <span style="color:#e6db74">status</span>
-</code></pre></div></article>
+</code></pre></div><h2 id="2">
+  2.
+  <a class="anchor" href="#2">#</a>
+</h2>
+<p>From local bash in <code>/Hugo/Sites/blog/public</code> connect to the created git</p>
+<pre><code class="language-git" data-lang="git">git remote set-url origin http://gitter@myip.address/site.git
+git add . 
+git commit -m &quot;commit message&quot;
+git push
+</code></pre><p>returned error message <code> The requested ULR returned error: 403</code></p>
+<p>on <a href="https://stackoverflow.com/questions/52533318/how-to-solve-the-requested-url-returned-error-403-in-git-repository">stack overflow</a> it says 403 is a credential error. Git can only be accessed by ssh key. So we need to generate ssh key pair to connect local files to my vps with <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-git-server-on-a-vps">this tutorial</a>.</p>
+</article>
  
       
 
@@ -259,6 +271,7 @@ document.querySelectorAll("pre code").forEach(code=>{code.addEventListener("clic
   <ul>
     <li><a href="#objectives">objectives</a></li>
     <li><a href="#1">1.</a></li>
+    <li><a href="#2">2.</a></li>
   </ul>
 </nav>
 
