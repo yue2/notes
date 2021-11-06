@@ -20,7 +20,7 @@ install git apt-get install git and add new user to check git push and commit  a
 <link rel="icon" href="/notes/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/notes/book.min.e62c87c0a5f78618c1d9654bac000b57fdba292e359cd3ae3a97d4774328868d.css" integrity="sha256-5iyHwKX3hhjB2WVLrAALV/26KS41nNOuOpfUd0Moho0=" crossorigin="anonymous">
   <script defer src="/notes/flexsearch.min.js"></script>
-  <script defer src="/notes/en.search.min.7573297f4d75bbf3787c65235c43c807e976a2e58a769d1634c4fad357eb970d.js" integrity="sha256-dXMpf011u/N4fGUjXEPIB&#43;l2ouWKdp0WNMT601frlw0=" crossorigin="anonymous"></script>
+  <script defer src="/notes/en.search.min.57f8fbafd89ac592189ae40527859a90e40939b3b8cfdd32caae5f92451f59ad.js" integrity="sha256-V/j7r9iaxZIYmuQFJ4WakOQJObO4z90yyq5fkkUfWa0=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -173,6 +173,11 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#1">1.</a></li>
     <li><a href="#2">2.</a></li>
   </ul>
+
+  <ul>
+    <li><a href="#1-1">1.</a></li>
+    <li><a href="#2-1">2.</a></li>
+  </ul>
 </nav>
 
 
@@ -227,6 +232,38 @@ git commit -m &quot;commit message&quot;
 git push
 </code></pre><p>returned error message <code> The requested ULR returned error: 403</code></p>
 <p>on <a href="https://stackoverflow.com/questions/52533318/how-to-solve-the-requested-url-returned-error-403-in-git-repository">stack overflow</a> it says 403 is a credential error. Git can only be accessed by ssh key. So we need to generate ssh key pair to connect local files to my vps with <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-git-server-on-a-vps">this tutorial</a>.</p>
+<h1 id="重新来">
+  重新来
+  <a class="anchor" href="#%e9%87%8d%e6%96%b0%e6%9d%a5">#</a>
+</h1>
+<h2 id="1-1">
+  1.
+  <a class="anchor" href="#1-1">#</a>
+</h2>
+<pre><code class="language-ssh" data-lang="ssh">su - gitter
+mkdir hugoblog.git
+git --bare init
+</code></pre><p>问题来了，bare git 不能看到文件，所以也不能从这个文件夹host static html files</p>
+<h2 id="2-1">
+  2.
+  <a class="anchor" href="#2-1">#</a>
+</h2>
+<p>go to user gitter <code> su - gitter</code></p>
+<p>generate ssh key pairs in root directory</p>
+<pre><code class="language-ssh" data-lang="ssh">mkdir -p ~/.ssh &amp;&amp; chmod 0700 ~/.ssh
+gitter@midofnowhere:~$ touch ~/.ssh/authorized_keys
+gitter@midofnowhere:~$ chmod 0600 ~/.ssh/authorized_keys
+gitter@midofnowhere:~$ git init --bare ~/hugoblog.git
+Initialized empty Git repository in /home/gitter/hugoblog.git/
+</code></pre><p>check local ssh keygen in local git bash <code> cat ~/.ssh/id_rsa.pub</code> then copy the keygen to vps authorized key file.</p>
+<p>go to local git bash</p>
+<pre><code class="language-git" data-lang="git">git init
+git remote set-url origin gitter@myip:hugoblog.git
+git add . 
+git commit -m &quot;commit message&quot;
+git push --set-upstream origin main ##no branches in remote git yet so set up a main branch
+</code></pre><p>successfully pushed. How to check the files on vps?</p>
+<p><a href="https://stackoverflow.com/questions/8606422/git-push-to-remote-commits-are-going-through-but-cant-see-files">Bare git</a> does not allow viewing files directly. It only contains version control. Need to use <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-automatic-deployment-with-git-with-a-vps">hook</a> to deploy static html files.</p>
 </article>
  
       
@@ -272,6 +309,11 @@ document.querySelectorAll("pre code").forEach(code=>{code.addEventListener("clic
     <li><a href="#objectives">objectives</a></li>
     <li><a href="#1">1.</a></li>
     <li><a href="#2">2.</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1-1">1.</a></li>
+    <li><a href="#2-1">2.</a></li>
   </ul>
 </nav>
 
