@@ -13,9 +13,8 @@
       <pubDate>Sun, 31 Oct 2021 15:41:00 +0800</pubDate>
       
       <guid>https://yue2.github.io/notes/docs/git_nginx/</guid>
-      <description>Push local files to NGINX using GIT #  objectives #   install git in virtual machine connect local git to VPS push local static site to VPS configure NGINX to host the site  1. #  Following this tutorial, under user hugo, create directives for the storing of files
- mkdir var/www/
-install git apt-get install git and add new user to check git push and commit  adduser gitter password same as hugo user.</description>
+      <description>Push local files to NGINX using GIT #  objectives #   install git in virtual machine connect local git to VPS push local static site to VPS configure NGINX to host the site  returned error message  The requested ULR returned error: 403
+on stack overflow it says 403 is a credential error. Git can only be accessed by ssh key. So we need to generate ssh key pair to connect local files to my vps with this tutorial.</description>
     </item>
     
     <item>

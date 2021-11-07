@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Push local files to NGINX using GIT #  objectives #   install git in virtual machine connect local git to VPS push local static site to VPS configure NGINX to host the site  1. #  Following this tutorial, under user hugo, create directives for the storing of files
- mkdir var/www/
-install git apt-get install git and add new user to check git push and commit  adduser gitter password same as hugo user.">
+<meta name="description" content="Push local files to NGINX using GIT #  objectives #   install git in virtual machine connect local git to VPS push local static site to VPS configure NGINX to host the site  returned error message  The requested ULR returned error: 403
+on stack overflow it says 403 is a credential error. Git can only be accessed by ssh key. So we need to generate ssh key pair to connect local files to my vps with this tutorial.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Git_nginx" />
-<meta property="og:description" content="Push local files to NGINX using GIT #  objectives #   install git in virtual machine connect local git to VPS push local static site to VPS configure NGINX to host the site  1. #  Following this tutorial, under user hugo, create directives for the storing of files
- mkdir var/www/
-install git apt-get install git and add new user to check git push and commit  adduser gitter password same as hugo user." />
+<meta property="og:description" content="Push local files to NGINX using GIT #  objectives #   install git in virtual machine connect local git to VPS push local static site to VPS configure NGINX to host the site  returned error message  The requested ULR returned error: 403
+on stack overflow it says 403 is a credential error. Git can only be accessed by ssh key. So we need to generate ssh key pair to connect local files to my vps with this tutorial." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yue2.github.io/notes/docs/git_nginx/" />
 <meta property="article:published_time" content="2021-10-31T15:41:00+08:00" />
@@ -20,7 +18,7 @@ install git apt-get install git and add new user to check git push and commit  a
 <link rel="icon" href="/notes/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/notes/book.min.e62c87c0a5f78618c1d9654bac000b57fdba292e359cd3ae3a97d4774328868d.css" integrity="sha256-5iyHwKX3hhjB2WVLrAALV/26KS41nNOuOpfUd0Moho0=" crossorigin="anonymous">
   <script defer src="/notes/flexsearch.min.js"></script>
-  <script defer src="/notes/en.search.min.57f8fbafd89ac592189ae40527859a90e40939b3b8cfdd32caae5f92451f59ad.js" integrity="sha256-V/j7r9iaxZIYmuQFJ4WakOQJObO4z90yyq5fkkUfWa0=" crossorigin="anonymous"></script>
+  <script defer src="/notes/en.search.min.2340531a4a3de983335a5875d22c132f10df664e15123f2e846a15cbda9b32a4.js" integrity="sha256-I0BTGko96YMzWlh10iwTLxDfZk4VEj8uhGoVy9qbMqQ=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -170,13 +168,17 @@ https://github.com/alex-shpak/hugo-book
 <nav id="TableOfContents">
   <ul>
     <li><a href="#objectives">objectives</a></li>
-    <li><a href="#1">1.</a></li>
-    <li><a href="#2">2.</a></li>
   </ul>
 
   <ul>
-    <li><a href="#1-1">1.</a></li>
-    <li><a href="#2-1">2.</a></li>
+    <li><a href="#1">1.</a></li>
+    <li><a href="#2">2.</a>
+      <ul>
+        <li><a href="#changed-mind">changed mind</a></li>
+      </ul>
+    </li>
+    <li><a href="#3">3.</a></li>
+    <li><a href="#4">4.</a></li>
   </ul>
 </nav>
 
@@ -203,50 +205,23 @@ https://github.com/alex-shpak/hugo-book
 <li>push local static site to VPS</li>
 <li>configure NGINX to host the site</li>
 </ol>
-<h2 id="1">
-  1.
-  <a class="anchor" href="#1">#</a>
-</h2>
-<p>Following this <a href="https://www.howtoforge.com/tutorial/ubuntu-git-server-installation/">tutorial</a>, under user hugo, create directives for the storing of files</p>
-<p><code> mkdir var/www/</code></p>
-<p>install git <code>apt-get install git</code> and add new user to check git push and commit <code> adduser gitter</code> password same as hugo user.</p>
-<p>initiate a git on the system</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#66d9ef">mkdir</span> <span style="color:#e6db74">site.git</span> <span style="color:#e6db74">&amp;&amp;</span> <span style="color:#e6db74">cd</span> <span style="color:#e6db74">site.git</span>
-<span style="color:#e6db74">git</span> <span style="color:#e6db74">--bare</span> <span style="color:#e6db74">init</span>
-<span style="color:#e6db74">git</span> <span style="color:#e6db74">update-server-info</span>
-<span style="color:#e6db74">chown</span> <span style="color:#e6db74">-R</span> <span style="color:#e6db74">www-data.www-data</span> <span style="color:#e6db74">.</span> 
-<span style="color:#e6db74">chmod</span> <span style="color:#e6db74">-R</span> <span style="color:#ae81ff">755</span> <span style="color:#e6db74">.</span> 
-</code></pre></div><p>allow firewall</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#66d9ef">ufw</span> <span style="color:#e6db74">enable</span>
-<span style="color:#e6db74">ufw</span> <span style="color:#e6db74">allow</span> <span style="color:#e6db74">ssh</span>
-<span style="color:#e6db74">ufw</span> <span style="color:#e6db74">allow</span> <span style="color:#e6db74">http</span>
-<span style="color:#e6db74">ufw</span> <span style="color:#e6db74">status</span>
-</code></pre></div><h2 id="2">
-  2.
-  <a class="anchor" href="#2">#</a>
-</h2>
-<p>From local bash in <code>/Hugo/Sites/blog/public</code> connect to the created git</p>
-<pre><code class="language-git" data-lang="git">git remote set-url origin http://gitter@myip.address/site.git
-git add . 
-git commit -m &quot;commit message&quot;
-git push
-</code></pre><p>returned error message <code> The requested ULR returned error: 403</code></p>
+<p>returned error message <code> The requested ULR returned error: 403</code></p>
 <p>on <a href="https://stackoverflow.com/questions/52533318/how-to-solve-the-requested-url-returned-error-403-in-git-repository">stack overflow</a> it says 403 is a credential error. Git can only be accessed by ssh key. So we need to generate ssh key pair to connect local files to my vps with <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-git-server-on-a-vps">this tutorial</a>.</p>
 <h1 id="重新来">
   重新来
   <a class="anchor" href="#%e9%87%8d%e6%96%b0%e6%9d%a5">#</a>
 </h1>
-<h2 id="1-1">
+<h2 id="1">
   1.
-  <a class="anchor" href="#1-1">#</a>
+  <a class="anchor" href="#1">#</a>
 </h2>
 <pre><code class="language-ssh" data-lang="ssh">su - gitter
 mkdir hugoblog.git
 git --bare init
 </code></pre><p>问题来了，bare git 不能看到文件，所以也不能从这个文件夹host static html files</p>
-<h2 id="2-1">
+<h2 id="2">
   2.
-  <a class="anchor" href="#2-1">#</a>
+  <a class="anchor" href="#2">#</a>
 </h2>
 <p>go to user gitter <code> su - gitter</code></p>
 <p>generate ssh key pairs in root directory</p>
@@ -264,6 +239,37 @@ git commit -m &quot;commit message&quot;
 git push --set-upstream origin main ##no branches in remote git yet so set up a main branch
 </code></pre><p>successfully pushed. How to check the files on vps?</p>
 <p><a href="https://stackoverflow.com/questions/8606422/git-push-to-remote-commits-are-going-through-but-cant-see-files">Bare git</a> does not allow viewing files directly. It only contains version control. Need to use <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-automatic-deployment-with-git-with-a-vps">hook</a> to deploy static html files.</p>
+<h3 id="changed-mind">
+  changed mind
+  <a class="anchor" href="#changed-mind">#</a>
+</h3>
+<p>I deleted the bare git and initialized a new &ldquo;normal&rdquo; git. Just:</p>
+<pre><code class="language-ssh" data-lang="ssh">rm rf -thebare.git
+mkdir new.git &amp;&amp; cd new.git
+git init
+</code></pre><h2 id="3">
+  3.
+  <a class="anchor" href="#3">#</a>
+</h2>
+<p>basic operations for git</p>
+<pre><code class="language-git" data-lang="git">git branch &lt;new branch name&gt;
+git checkout &lt;go to the branch need to checkout&gt;
+git branch -a ##display all branches
+git branch &lt;branch name&gt; --set-upstream-to remotes/origin/&lt;branch name&gt;
+</code></pre><p>cannot push to the branch currently checked out according to this <a href="https://stackoverflow.com/questions/2816369/git-push-error-remote-rejected-master-master-branch-is-currently-checked">stack overflow qs</a> so I created a temporary branch <code> git branch temp &amp;&amp; git checkout temp</code> then push from local repository.</p>
+<p>Successfully pushed.</p>
+<h2 id="4">
+  4.
+  <a class="anchor" href="#4">#</a>
+</h2>
+<p>Write nginx configuration file using <a href="https://jgefroh.medium.com/a-guide-to-using-nginx-for-static-websites-d96a9d034940">this tutorial</a> and <a href="https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/">this one from nginx documentation</a>.</p>
+<p>need sudo 权限 for the user gitter</p>
+<p>in root <code> usermod -aG sudo gitter</code> then in gitter <code>sudo nano blog.midofnowhere</code>.</p>
+<p>Could not start nginx server.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-nginx" data-lang="nginx"><span style="color:#66d9ef">nginx</span> <span style="color:#e6db74">-t</span>
+<span style="color:#75715e">#[emerg] a duplicate default server for 0.0.0.0:80 in /etc/nginx/sites-enabled/default:22
+</span><span style="color:#75715e"># configuration file /etc/nginx/nginx.conf test failed
+</span></code></pre></div><p>change portal to 8082. NGINX can start but cannot reach from browser.</p>
 </article>
  
       
@@ -307,13 +313,17 @@ document.querySelectorAll("pre code").forEach(code=>{code.addEventListener("clic
 <nav id="TableOfContents">
   <ul>
     <li><a href="#objectives">objectives</a></li>
-    <li><a href="#1">1.</a></li>
-    <li><a href="#2">2.</a></li>
   </ul>
 
   <ul>
-    <li><a href="#1-1">1.</a></li>
-    <li><a href="#2-1">2.</a></li>
+    <li><a href="#1">1.</a></li>
+    <li><a href="#2">2.</a>
+      <ul>
+        <li><a href="#changed-mind">changed mind</a></li>
+      </ul>
+    </li>
+    <li><a href="#3">3.</a></li>
+    <li><a href="#4">4.</a></li>
   </ul>
 </nav>
 
